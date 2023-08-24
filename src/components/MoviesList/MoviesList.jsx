@@ -3,13 +3,14 @@ import React from 'react';
 function MoviesList({ movies }) {
   return (
     <ul>
-      {movies.map(movie => {
-        return (
-          <li key={movie.id}>
-            <p>{movie.id}</p>
-          </li>
-        );
-      })}
+      {movies &&
+        movies.map(movie => {
+          return (
+            <li key={movie.id}>
+              <p>{movie.id}</p>
+            </li>
+          );
+        })}
     </ul>
   );
 }
