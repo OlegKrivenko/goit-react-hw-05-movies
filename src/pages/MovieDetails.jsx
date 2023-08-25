@@ -1,6 +1,9 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const MovieDetails = () => {
+  const location = useLocation();
+  console.log(location);
+
   return (
     <div>
       <ul>
