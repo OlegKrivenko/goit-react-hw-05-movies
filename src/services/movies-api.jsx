@@ -19,22 +19,20 @@ const getTrendingMovies = async () => {
 //   });
 // };
 
-const getSearchMovies = query => {
-  return axios
-    .get(`search/movie?query=${query}&api_key=${API_KEY}`)
-    .then(response => {
-      // console.log('getSearchMovies:', response.data.results);
-
-      return response.data.results;
-    });
+const getSearchMovies = async query => {
+  try {
+    return await axios.get(`search/movie?query=${query}&api_key=${API_KEY}`);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const getDetailsMovie = movieId => {
-  return axios.get(`movie/${movieId}?api_key=${API_KEY}`).then(response => {
-    // console.log('getDetailsMovie:', response.data);
-
-    return response.data;
-  });
+const getDetailsMovie = async movieId => {
+  try {
+    return await axios.get(`movie/${movieId}?api_key=${API_KEY}`);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const getCreditsMovie = movieId => {

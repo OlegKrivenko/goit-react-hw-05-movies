@@ -1,10 +1,11 @@
 import MoviesGalleryItem from 'components/MoviesGalleryItem';
+import css from './MoviesGallery.module.css';
 
 const MoviesGallery = ({ movies }) => {
   console.log(movies);
 
   return (
-    <ul>
+    <ul className={css.moviesBox}>
       {movies &&
         movies.map(
           ({ id, poster_path, original_title, title, original_name, name }) => {
