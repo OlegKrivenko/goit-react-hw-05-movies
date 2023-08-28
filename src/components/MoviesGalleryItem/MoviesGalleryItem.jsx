@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import css from './MoviesGalleryItem.module.css';
 
@@ -31,6 +31,6 @@ const MoviesGalleryItem = ({
   );
 };
 
-MoviesGalleryItem.propTypes = {};
+// MoviesGalleryItem.propTypes = {};
 
 export default MoviesGalleryItem;
