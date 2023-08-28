@@ -6,6 +6,7 @@ const MoviesGallery = ({ movies }) => {
 
   return (
     <ul className={css.moviesBox}>
+      <></>
       {movies &&
         movies.map(
           ({ id, poster_path, original_title, title, original_name, name }) => {

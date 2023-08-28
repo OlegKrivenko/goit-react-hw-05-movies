@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
-  background: rgb(255, 213, 213);
   // padding: 0 10px;
 `;
 

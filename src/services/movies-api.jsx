@@ -10,7 +10,6 @@ const getTrendingMovies = async () => {
     console.log(error);
   }
 };
-
 // const getTrendingMovies = () => {
 //   return axios.get(`trending/all/day?api_key=${API_KEY}`).then(response => {
 //     console.log('getTrendingMovies:', response);
@@ -35,24 +34,18 @@ const getDetailsMovie = async movieId => {
   }
 };
 
-const getCreditsMovie = movieId => {
-  return axios
-    .get(`movie/${movieId}/credits?api_key=${API_KEY}`)
-    .then(response => {
-      // console.log('getCreditsMovie:', response.data);
-
-      return response.data;
-    });
+const getCreditsMovie = async movieId => {
+  try {
+    return await axios.get(`movie/${movieId}/credits?api_key=${API_KEY}`);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const getReviewsMovie = movieId => {
-  return axios
-    .get(`movie/${movieId}/reviews?api_key=${API_KEY}`)
-    .then(response => {
-      // console.log('getReviewsMovie:', response.data);
-
-      return response.data;
-    });
+const getReviewsMovie = async movieId => {
+  try {
+    return await axios.get(`movie/${movieId}/reviews?api_key=${API_KEY}`);
+  } catch (error) {}
 };
 
 const api = {
