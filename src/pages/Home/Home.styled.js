@@ -6,3 +6,8 @@ export const Title = styled.h2`
   padding-bottom: 20px;
   text-align: center;
 `;
+
+export const TextError = styled.p`
+  padding: 20px;
+  font-size: 20px;
+`;

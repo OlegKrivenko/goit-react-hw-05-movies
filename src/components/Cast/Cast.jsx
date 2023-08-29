@@ -7,7 +7,6 @@ import css from './Cast.module.css';
 const Cast = () => {
   const [cast, setCast] = useState(null);
   const { movieId } = useParams();
-  console.log(cast);
 
   useEffect(() => {
     api

@@ -5,56 +5,87 @@ import css from './MovieDetails.module.css';
 import BackLink from 'components/BackLink';
 
 const MovieDetails = () => {
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
+    console.log('setIsLoading');
+
     api
       .getDetailsMovie(movieId)
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         setMovie(response.data);
+        console.log('setMovie');
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
+        setError(error);
+        console.log('setError');
+      })
+      .finally(() => {
+        setIsLoading(false);
+        console.log('setIsLoading-finally');
       });
   }, [movieId]);
 
-  const titleMovie =
-    movie.title || movie.original_title || movie.original_name || movie.name;
-  const imgMovie = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
-  const averageScore = movie.vote_average;
+  console.log(movie);
+  console.log(movieId);
+  console.log(error);
 
-  const overview = movie.overview
-    ? movie.overview
-    : 'Sorry, this movie does not have overview.';
-
-  const genres = movie.genres
-    ? movie.genres.map(genre => genre.name).join(', ')
-    : 'Sorry, this movie does not have genres.';
+  if (!isLoading && error) {
+    return (
+      <>
+        <BackLink to={backLinkHref}>Back</BackLink>
+        <p className={css.errorText}>This page not create, try again later...</p>
+      </>
+    );
+  }
 
   return (
     <div>
       <BackLink to={backLinkHref}>Back</BackLink>
-      {Object.keys(movie).length && (
+      {movie && (
         <div>
           <div className={css.box}>
-            <img className={css.imgMovie} src={imgMovie} alt="" />
+            <img
+              className={css.imgMovie}
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt=""
+            />
 
             <div className={css.textContainer}>
-              <h2 className={css.tittle}>{titleMovie}</h2>
-              <p className={css.averageScore}>Average score: {averageScore}</p>
+              <h2 className={css.tittle}>
+                {movie.title ||
+                  movie.original_title ||
+                  movie.original_name ||
+                  movie.name}
+              </h2>
+              <p className={css.averageScore}>
+                Average score: {movie.vote_average}
+              </p>
 
               <div className={css.textBox}>
                 <h3>Overview</h3>
-                <p>{overview}</p>
+                <p>
+                  {movie.overview
+                    ? movie.overview
+                    : 'Sorry, this movie does not have overview.'}
+                </p>
               </div>
 
               <div className={css.textBox}>
                 <h3>Geners</h3>
-                <p>{genres}</p>
+                <p>
+                  {movie.genres
+                    ? movie.genres.map(genre => genre.name).join(', ')
+                    : 'Sorry, this movie does not have genres.'}
+                </p>
               </div>
 
               <div className={css.textBox}>
