@@ -9,7 +9,6 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     api
       .getTrendingMovies()
       .then(response => {

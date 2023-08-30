@@ -7,8 +7,12 @@ import css from './Cast.module.css';
 const Cast = () => {
   const [cast, setCast] = useState(null);
   const { movieId } = useParams();
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
+
     api
       .getCreditsMovie(movieId)
       .then(response => {
@@ -16,8 +20,18 @@ const Cast = () => {
       })
       .catch(error => {
         console.log(error);
+        setError(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [movieId]);
+
+  if (!isLoading && error) {
+    return (
+      <p className={css.errorText}>This cast not create, try again later...</p>
+    );
+  }
 
   return (
     <>

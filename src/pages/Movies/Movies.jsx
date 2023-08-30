@@ -1,8 +1,15 @@
+import SearchBar from 'components/SearchBar';
+import { useState } from 'react';
+
 const Movies = () => {
+  const [movies, setMovies] = useState();
+
+  const handleFormSubmit = query => {};
+
   return (
-    <>
-      <p>Movies page</p>
-    </>
+    <div>
+      <SearchBar />
+    </div>
   );
 };
 
