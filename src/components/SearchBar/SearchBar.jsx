@@ -18,6 +18,7 @@ const SearchBar = props => {
       Notify.warning('Please enter your search query!');
       return;
     }
+
     props.onSubmit(searchQuery);
   };
 
@@ -26,7 +27,7 @@ const SearchBar = props => {
       <form className={css.form} onSubmit={handleSubmit}>
         <button type="submit" className={css.button}>
           <GrSearch size="24px" />
-          <span className={css.button__label}>Search</span>
+          {/* <span className={css.button__label}>Search</span> */}
         </button>
 
         <input
@@ -34,7 +35,7 @@ const SearchBar = props => {
           type="text"
           autoComplete="off"
           autoFocus
-          placeholder="Search images and photos"
+          placeholder="Search movies"
           onChange={handleChange}
         />
       </form>

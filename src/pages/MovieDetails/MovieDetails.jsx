@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import api from '../../services/movies-api';
 import css from './MovieDetails.module.css';
@@ -12,37 +12,31 @@ const MovieDetails = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log(backLinkHref);
+
   useEffect(() => {
     setIsLoading(true);
-    console.log('setIsLoading');
 
     api
       .getDetailsMovie(movieId)
       .then(response => {
-        // console.log(response.data);
         setMovie(response.data);
-        console.log('setMovie');
       })
       .catch(error => {
-        // console.log(error);
         setError(error);
-        console.log('setError');
       })
       .finally(() => {
         setIsLoading(false);
-        console.log('setIsLoading-finally');
       });
   }, [movieId]);
-
-  console.log(movie);
-  console.log(movieId);
-  console.log(error);
 
   if (!isLoading && error) {
     return (
       <>
         <BackLink to={backLinkHref}>Back</BackLink>
-        <p className={css.errorText}>This page not create, try again later...</p>
+        <p className={css.errorText}>
+          This page not create, try again later...
+        </p>
       </>
     );
   }

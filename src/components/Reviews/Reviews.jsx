@@ -4,7 +4,7 @@ import css from './Reviews.module.css';
 import { useParams } from 'react-router-dom';
 
 const Reviews = () => {
-  const [reviews, setReviews] = useState(null);
+  const [reviews, setReviews] = useState([]);
   const { movieId } = useParams();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,11 +27,14 @@ const Reviews = () => {
       });
   }, [movieId]);
 
-  if (!isLoading && error) {
+  if ((!isLoading && error) || reviews.length === 0) {
     return (
-      <p className={css.errorText}>
-        This reviews not create, try again later...
-      </p>
+      <>
+        <h2 className={css.tittle}>Reviews</h2>
+        <p className={css.errorText}>
+          This reviews not create, try again later...
+        </p>
+      </>
     );
   }
 
