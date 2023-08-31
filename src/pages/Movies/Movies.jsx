@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import api from '../../services/movies-api';
 import { TextError } from './Movies.styled';
 import SearchBar from 'components/SearchBar';
 import MoviesGallery from 'components/MoviesGallery';
+import Loader from 'components/Loader';
 
 const Movies = () => {
   const [movies, setMovies] = useState();
@@ -24,7 +26,9 @@ const Movies = () => {
       .getSearchMovies(searchQuery)
       .then(response => {
         setMovies(response.data.results);
-        console.log(response.data.results);
+        if (response.data.results.length === 0) {
+          Notify.warning('Sory this movie is missing!');
+        }
       })
       .catch(error => {
         console.log(error);
@@ -48,6 +52,8 @@ const Movies = () => {
   return (
     <>
       <SearchBar onSubmit={handleFormSubmit} />
+      {isLoading && <Loader />}
+
       {movies && <MoviesGallery movies={movies} />}
     </>
   );

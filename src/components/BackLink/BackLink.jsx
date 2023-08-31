@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { StyledLink } from './BackLink.styled';
 import { HiArrowLeft } from 'react-icons/hi';
 
@@ -12,3 +12,8 @@ const BackLink = ({ to, children }) => {
 };
 
 export default BackLink;
+
+BackLink.propTypes = {
+  to: PropTypes.object.isRequired,
+  children: PropTypes.string.isRequired,
+};

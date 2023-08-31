@@ -1,9 +1,8 @@
+import PropTypes from 'prop-types';
 import MoviesGalleryItem from 'components/MoviesGalleryItem';
 import css from './MoviesGallery.module.css';
 
 const MoviesGallery = ({ movies }) => {
-  console.log(movies);
-
   return (
     <ul className={css.moviesBox}>
       <></>
@@ -28,3 +27,7 @@ const MoviesGallery = ({ movies }) => {
 };
 
 export default MoviesGallery;
+
+MoviesGallery.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import api from '../../services/movies-api';
 import MoviesGallery from 'components/MoviesGallery';
 import { TextError, Title } from './Home.styled';
+import Loader from 'components/Loader';
 
 const Home = () => {
   const [movies, setMovies] = useState(null);
@@ -34,7 +35,8 @@ const Home = () => {
   return (
     <>
       <Title>Trending today</Title>
-      <MoviesGallery movies={movies} />
+      {isLoading && <Loader />}
+      {movies && <MoviesGallery movies={movies} />}
     </>
   );
 };

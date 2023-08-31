@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import css from './MoviesGalleryItem.module.css';
 
@@ -11,7 +11,6 @@ const MoviesGalleryItem = ({
   name,
 }) => {
   const location = useLocation();
-  console.log(location);
   const titleMovie = title || original_title || original_name || name;
 
   return (
@@ -37,6 +36,13 @@ const MoviesGalleryItem = ({
   );
 };
 
-// MoviesGalleryItem.propTypes = {};
-
 export default MoviesGalleryItem;
+
+MoviesGalleryItem.propTypes = {
+  movieId: PropTypes.number.isRequired,
+  poster_path: PropTypes.string,
+  original_title: PropTypes.string,
+  title: PropTypes.string,
+  original_name: PropTypes.string,
+  name: PropTypes.string,
+};

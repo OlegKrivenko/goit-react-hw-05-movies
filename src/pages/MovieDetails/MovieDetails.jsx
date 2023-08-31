@@ -1,18 +1,17 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import api from '../../services/movies-api';
 import css from './MovieDetails.module.css';
 import BackLink from 'components/BackLink';
+import Loader from 'components/Loader';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = useRef(location.state?.from ?? '/');
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  console.log(backLinkHref);
 
   useEffect(() => {
     setIsLoading(true);
@@ -33,7 +32,7 @@ const MovieDetails = () => {
   if (!isLoading && error) {
     return (
       <>
-        <BackLink to={backLinkHref}>Back</BackLink>
+        <BackLink to={backLinkHref.current}>Back</BackLink>
         <p className={css.errorText}>
           This page not create, try again later...
         </p>
@@ -43,13 +42,18 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <BackLink to={backLinkHref}>Back</BackLink>
+      <BackLink to={backLinkHref.current}>Back</BackLink>
+      {isLoading && <Loader />}
       {movie && (
         <div>
           <div className={css.box}>
             <img
               className={css.imgMovie}
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                  : 'https://cdn.pixabay.com/photo/2018/05/26/18/06/dog-3431913_1280.jpg'
+              }
               alt=""
             />
 
@@ -99,8 +103,9 @@ const MovieDetails = () => {
               </div>
             </div>
           </div>
-
-          <Outlet />
+          <Suspense>
+            <Outlet fallback={<div>Loading subpage...</div>} />
+          </Suspense>
         </div>
       )}
     </div>

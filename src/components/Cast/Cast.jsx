@@ -4,8 +4,8 @@ import api from '../../services/movies-api';
 import { useParams } from 'react-router-dom';
 import css from './Cast.module.css';
 
-const Cast = () => {
-  const [cast, setCast] = useState(null);
+const Cast = ({ state }) => {
+  const [cast, setCast] = useState([]);
   const { movieId } = useParams();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,9 +27,14 @@ const Cast = () => {
       });
   }, [movieId]);
 
-  if (!isLoading && error) {
+  if ((!isLoading && error) || cast.length === 0) {
     return (
-      <p className={css.errorText}>This cast not create, try again later...</p>
+      <>
+        <h2 className={css.tittle}>Cast</h2>
+        <p className={css.errorText}>
+          This cast not create, try again later...
+        </p>
+      </>
     );
   }
 
