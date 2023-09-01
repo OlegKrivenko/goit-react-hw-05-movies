@@ -9,8 +9,8 @@ import MoviesGallery from 'components/MoviesGallery';
 import Loader from 'components/Loader';
 
 const Movies = () => {
-  const [movies, setMovies] = useState();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [movies, setMovies] = useState(null);
+  const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('query');
 
   const [error, setError] = useState(null);
@@ -45,13 +45,9 @@ const Movies = () => {
     );
   }
 
-  const handleFormSubmit = query => {
-    setSearchParams({ query });
-  };
-
   return (
     <>
-      <SearchBar onSubmit={handleFormSubmit} />
+      <SearchBar />
       {isLoading && <Loader />}
 
       {movies && <MoviesGallery movies={movies} />}

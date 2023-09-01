@@ -4,6 +4,8 @@ import api from '../../services/movies-api';
 import css from './MovieDetails.module.css';
 import BackLink from 'components/BackLink';
 import Loader from 'components/Loader';
+import getPosterImg from 'services/getPosterImg';
+import { logDOM } from '@testing-library/react';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
@@ -49,11 +51,7 @@ const MovieDetails = () => {
           <div className={css.box}>
             <img
               className={css.imgMovie}
-              src={
-                movie.poster_path
-                  ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-                  : 'https://cdn.pixabay.com/photo/2018/05/26/18/06/dog-3431913_1280.jpg'
-              }
+              src={getPosterImg(movie.poster_path)}
               alt=""
             />
 

@@ -3,9 +3,11 @@ import css from './SearchBar.module.css';
 import { GrSearch } from 'react-icons/gr';
 import PropTypes from 'prop-types';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { useSearchParams } from 'react-router-dom';
 
-const SearchBar = props => {
+const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [, setSearchParams] = useSearchParams();
 
   const handleChange = event => {
     setSearchQuery(event.currentTarget.value.toLowerCase().trim());
@@ -19,7 +21,7 @@ const SearchBar = props => {
       return;
     }
 
-    props.onSubmit(searchQuery);
+    setSearchParams({ query: searchQuery });
   };
 
   return (
@@ -44,7 +46,3 @@ const SearchBar = props => {
 };
 
 export default SearchBar;
-
-SearchBar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};

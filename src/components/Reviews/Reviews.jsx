@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import api from '../../services/movies-api';
 import css from './Reviews.module.css';
 import { useParams } from 'react-router-dom';
+import Loader from 'components/Loader';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -27,7 +28,7 @@ const Reviews = () => {
       });
   }, [movieId]);
 
-  if ((!isLoading && error) || reviews.length === 0) {
+  if (!isLoading && error) {
     return (
       <>
         <h2 className={css.tittle}>Reviews</h2>
@@ -41,6 +42,7 @@ const Reviews = () => {
   return (
     <div className={css.reviews__container}>
       <h2 className={css.tittle}>Reviews</h2>
+      {isLoading && <Loader />}
       <ul className={css.reviewsBox}>
         {reviews &&
           reviews.map(({ id, author, content }) => {
