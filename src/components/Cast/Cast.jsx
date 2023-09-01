@@ -12,7 +12,6 @@ const Cast = ({ state }) => {
 
   useEffect(() => {
     setIsLoading(true);
-
     api
       .getCreditsMovie(movieId)
       .then(response => {
