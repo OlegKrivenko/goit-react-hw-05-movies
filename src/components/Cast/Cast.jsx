@@ -15,28 +15,19 @@ const Cast = ({ state }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    console.log('setIsLoading');
 
     api
       .getCreditsMovie(movieId)
       .then(response => {
         setCast(response.data.cast);
-        console.log('setCast');
       })
       .catch(error => {
         setError(error);
-        console.log('setError');
-        console.log(error);
       })
       .finally(() => {
         setIsLoading(false);
-        console.log('setIsLoading');
       });
   }, [movieId]);
-
-  // console.log(cast);
-  // console.log(movieId);
-  console.log(isLoading);
 
   if (!isLoading && error) {
     return (

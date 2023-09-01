@@ -5,7 +5,6 @@ import css from './MovieDetails.module.css';
 import BackLink from 'components/BackLink';
 import Loader from 'components/Loader';
 import getPosterImg from 'services/getPosterImg';
-import { logDOM } from '@testing-library/react';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
@@ -34,7 +33,7 @@ const MovieDetails = () => {
   if (!isLoading && error) {
     return (
       <>
-        <BackLink to={backLinkHref.current}>Back</BackLink>
+        <BackLink to={backLinkHref}>Back</BackLink>
         <p className={css.errorText}>
           This page not create, try again later...
         </p>
@@ -42,6 +41,8 @@ const MovieDetails = () => {
     );
   }
 
+  console.log(backLinkHref);
+  console.log(backLinkHref.current);
   return (
     <div>
       <BackLink to={backLinkHref.current}>Back</BackLink>
