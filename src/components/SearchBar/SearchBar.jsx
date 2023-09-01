@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import css from './SearchBar.module.css';
 import { GrSearch } from 'react-icons/gr';
-import PropTypes from 'prop-types';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useSearchParams } from 'react-router-dom';
 
