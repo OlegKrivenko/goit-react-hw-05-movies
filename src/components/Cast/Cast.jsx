@@ -7,7 +7,6 @@ import getPosterImg from '../../services/getPosterImg';
 import Loader from 'components/Loader';
 
 const Cast = ({ state }) => {
-  console.log('start============================');
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
   const [error, setError] = useState(null);

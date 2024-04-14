@@ -10,7 +10,13 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
+
+  // useRef - робить стабільне посилання на попередню сторінку зі запитом
+  // Якщо без useRef то при натиснені на вкладені компоненти Cast та Reviews
+  // буде змінюватись посилання на попердню сторінку location.state?.from
   const backLinkHref = useRef(location.state?.from ?? '/');
+  console.log(backLinkHref.current);
+
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,7 +39,7 @@ const MovieDetails = () => {
   if (!isLoading && error) {
     return (
       <>
-        <BackLink to={backLinkHref}>Back</BackLink>
+        <BackLink to={backLinkHref.current}>Back</BackLink>
         <p className={css.errorText}>
           This page not create, try again later...
         </p>
@@ -41,8 +47,6 @@ const MovieDetails = () => {
     );
   }
 
-  console.log(backLinkHref);
-  console.log(backLinkHref.current);
   return (
     <div>
       <BackLink to={backLinkHref.current}>Back</BackLink>
