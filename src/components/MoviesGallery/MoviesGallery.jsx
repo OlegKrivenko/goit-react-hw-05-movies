@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import MoviesGalleryItem from 'components/MoviesGalleryItem';
-import css from './MoviesGallery.module.css';
+import { MoviesBox } from './MoviesGallery.styled';
 
 const MoviesGallery = ({ movies }) => {
   return (
-    <ul className={css.moviesBox}>
+    <MoviesBox>
       <></>
       {movies &&
         movies.map(
@@ -22,7 +22,7 @@ const MoviesGallery = ({ movies }) => {
             );
           }
         )}
-    </ul>
+    </MoviesBox>
   );
 };
 
