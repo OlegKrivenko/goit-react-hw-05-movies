@@ -5,7 +5,6 @@ import { MoviesBox } from './MoviesGallery.styled';
 const MoviesGallery = ({ movies }) => {
   return (
     <MoviesBox>
-      <></>
       {movies &&
         movies.map(
           ({ id, poster_path, original_title, title, original_name, name }) => {
