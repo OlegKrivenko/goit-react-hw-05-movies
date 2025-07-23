@@ -40,9 +40,7 @@ const Movies = () => {
   }, [searchQuery]);
 
   if (!isLoading && error) {
-    return (
-      <p className={TextError}>This page not create, try again later...</p>
-    );
+    return <TextError>This page not create, try again later...</TextError>;
   }
 
   return (

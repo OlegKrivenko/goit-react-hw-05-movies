@@ -10,12 +10,13 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
+  console.log('location', location);
 
   // useRef - робить стабільне посилання на попередню сторінку зі запитом
   // Якщо без useRef то при натиснені на вкладені компоненти Cast та Reviews
   // буде змінюватись посилання на попердню сторінку location.state?.from
   const backLinkHref = useRef(location.state?.from ?? '/');
-  console.log(backLinkHref.current);
+  console.log('backLinkHref', backLinkHref.current);
 
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
