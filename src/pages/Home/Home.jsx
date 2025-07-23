@@ -28,7 +28,9 @@ const Home = () => {
 
   if (!isLoading && error) {
     return (
-      <p className={TextError}>This page not create, try again later...</p>
+      <>
+        <TextError>This page not create, try again later...</TextError>
+      </>
     );
   }
 
