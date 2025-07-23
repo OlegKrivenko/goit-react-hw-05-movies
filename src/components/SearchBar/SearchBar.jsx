@@ -37,6 +37,7 @@ const SearchBar = () => {
           autoComplete="off"
           autoFocus
           placeholder="Search movies"
+          value={searchQuery}
           onChange={handleChange}
         />
       </form>
